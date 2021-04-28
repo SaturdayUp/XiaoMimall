@@ -1,0 +1,27 @@
+/* 设置整个项目多个网页共同的样式 */
+.clearfix::before,
+.clearfix::after{
+  content: '';
+  display: table;
+  clear: both;
+}
+/* 设置整个项目的一个字体 */
+body{
+  font:14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif ;
+  /* 设置字体的颜色 */
+  color: #333333;
+  /* 设置整个body的一个最小宽度，要不然当窗口太小的时候，会导致一些控件的溢出，导致结构混乱 */
+  min-width: 1226px;
+}
+a{
+  text-decoration: none;
+  /* color: #333333; */
+}
+/* 设置一个类，用来表示中间容器的宽度 */
+.w{
+  /* 设置容器的宽度 */
+  width: 1226px;
+  /* 设置容器水平居中 */
+  margin: 0 auto;
+
+}

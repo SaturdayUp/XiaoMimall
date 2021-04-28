@@ -1,0 +1,615 @@
+/* 设置首页index的样式 */
+/* 设置顶部导航栏最外层容器的样式 */
+.topbar-wrapper{
+  /* 设置最外层容器的宽度和父元素宽度保持一致 */
+  width: 100%;
+  /* 设置最外层容器的高度和行高 */
+  height: 40px;
+  line-height: 40px;
+  /* 设置最外层容器的背景颜色 */
+  background-color: #333333;
+}
+/* 设置顶部导航栏中a的样式 */
+.topbar a{
+  /* 设置标签a的字体大小 */
+  font-size: 12px;
+  /* 设置标签a的字体颜色 */
+  color: #b0b0b0;
+  /* 将行内元素a转换为块元素，使得当点击时不需要非点击a，而是点击区域即可 */
+  display: block;
+}
+/* 设置分割线的样式 */
+.topbar .line{
+  /* 设置分割线的大小 */
+  font-size: 12px;
+  /* 设置分割线的颜色 */
+  color: #424242;
+  /* 设置分割线的左右边距 */
+  margin: 0 8px;
+}
+/* 设置鼠标移入a标签时的样式 */
+.topbar a:hover{
+  color: #ffffff;
+}
+/* 设置顶部导航栏左侧向左浮动 */
+.service{
+  float: left;
+}
+/* 设置所有ul里面的li也浮动 */
+.topbar li{
+  float: left;
+}
+.app{
+  position: relative;
+}
+/* 设置下载APP的隐藏弹窗 */
+ .app .qrcode{
+   /* 此处的弹窗需要开启定位，使其浮动，要不然回影响布局，因为这个隐藏弹窗是.app的子元素 */
+  position: absolute;
+  /* 通过定位使弹窗能够到达一个居中的位置 */
+  left: -40px;
+  /* 设置隐藏弹窗的高度和宽度 */
+  width: 124px;
+  /* height: 148px;
+  display: none; */
+  /* 除了用display：none属性来设置弹窗隐藏外，还可以使用将height：0px属性 */
+  height: 0px;
+  /* 因为将height属性设置为0的话，布局会溢出，这时需要设置overhidden */
+  overflow: hidden;
+  /*因为隐藏弹窗是外部容器左侧标题栏service的子元素，所以继承了service的line-height，
+  如果此处不将line-height重置为0的话，那么会导致span中的文本也会有一个line-height，
+  这样就导致了span中的元素行间距过大  */
+  line-height: 0px;
+  /* 设置隐藏弹窗的背景颜色 */
+  background-color: #ffffff;
+  /* 设置隐藏弹窗的外阴影 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  /* 设置隐藏弹窗中的字体水平居中 */
+  text-align: center;
+  /* 设置隐藏弹窗由不显示到显示所用时长 */
+  transition: height 0.3s;
+  z-index: 9999;
+}
+
+/* 设置隐藏弹窗下的小三角的格式 */
+.app::after{
+  /* 如果要使用伪元素选择器，前三行代码是固定写法 */
+  content: '';
+  display: none;
+  clear: both;
+  width: 0px;
+  height: 0px;
+  /* 因为时.app的子元素，所以需要开启定位才可以让小三角到达指定位置 */
+  position: absolute;
+  /* 设置小三角的固定写法，就是利用border边框 */
+  border: 8px solid transparent;
+  /* 将上边框设置为none */
+  border-top: none;
+  /* 设置下边框的颜色为白色，左右两个残余的边框颜色设置为transparent */
+  border-bottom-color: #fff;
+  /* 通过设置定位，让小三角到达预期地方 */
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+/* 设置当鼠标移入到下载app时，小三角和弹窗才会弹出 */
+.app:hover .qrcode,
+.app:hover::after{
+  display: block;
+  height: 148px;
+}
+
+/* 设置下载APP的img */
+.app .qrcode img{
+  /* 设置图片的宽度和高度 */
+  width: 90px;
+  height: 90px;
+  /* 设置图片的外边距 */
+  margin: 17px;
+  /* 设置图片的下外边距 */
+  margin-bottom: 10px;
+}
+/* 设置下载APP弹窗中字体的格式 */
+.app .qrcode span{
+  /* 设置字体大小 */
+  font-size: 14px;
+  /* 设置字体颜色 */
+  color: #000000;
+}
+/* 设置顶部导航栏右侧两部分向右浮动，注意shop-cart和user-info写的先后顺序，要不然可能导致他俩位置发生错误 */
+.shop-cart, .user-info{
+  float: right;
+}
+/* 设置shop-cart的外左边距 */
+.shop-cart{
+  position: relative;
+  margin-left:  26px;
+}
+/* 设置购物车下的弹窗的属性 */
+.shop-cart .cart-display{
+  /* display: none; */
+  /* 因为使shop-cart的子元素，所以开启定位 */
+  position: absolute;
+  width: 318px;
+  height: 0px;
+  overflow: hidden;
+  /* 设置一个阴影效果 */
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  /* 设置弹窗延时弹出 */
+  transition: height 0.3s;
+  left: -198px;
+  /* 设置背景颜色，如果不设置背景颜色的话，设置优先级时不起作用 */
+  background-color: #fff;
+  /* 设置优先级，遮挡住下边的搜索框 */
+  z-index: 9999;
+}
+/* 设置弹窗中字体的格式 */
+.cart-display span{
+  /* 此处无需开启定位，因为span时cart-display的子元素 */
+  /* position: absolute; */
+  /* 使字体水平居中 */
+  left: 0;
+  right: 0;
+  margin: auto;
+  /* 使字体垂直居中 */
+  line-height: 99px;
+  /* 设置字体颜色 */
+  color: #000000;
+}
+
+/* 设置shop-cart里面a的样式 */
+.shop-cart a{
+  width: 120px;
+  background-color: #424242;
+  text-align: center;
+}
+
+/* 设置当鼠标移入到shop-cart时的样式 */
+.shop-cart:hover a{
+  background-color: #ffffff;
+  color: #FF6700;
+}
+/* 此处一定注意，不能将这两个hover合并在一起写，会导致给标签a设置为块元素，而且height设置为99px */
+.shop-cart:hover .cart-display{
+  display: block;
+  height: 99px;
+}
+/* 设置header的高度，宽度和居中效果已经在base.css中设置过，index.html中已经引入过该样式 */
+.header-wrapper .header{
+  height: 100px;
+}
+
+
+/* 设置头部logo的样式*/
+.header .logo{
+  /* 整体的heade是水平的，所以设置一下向左浮动 */
+  float: left;
+  position: relative;
+  /* 为了保证logo大小不发生变化，设置一下宽高 */
+  width: 55px;
+  height: 55px;
+  /* 设置上外边距，让logo垂直居中 */
+  margin-top: 22.5px;
+  /* 当a开启定位之后mi和home会水平排布，溢出布局，这里设置overflow */
+  overflow: hidden;
+}
+
+/* 设置头部logo中标签a的样式 */
+.header .logo a{
+  /* 因为mi和home切换时需要定位来实现，所以此处将行内元素转换为块元素不使用display而使用position */
+  position: absolute;
+  /* 因为图片可能小于logo的大小，此处直接将a的宽高设置为logo大小，可以保证如果图片小时，点击图片外的区域也可以完成跳转 */
+  width: 55px;
+  height: 55px;
+  /* 设置缓慢切换动画，设置left为0 */
+  left: 0px;
+  /* 设置标签a的背景图片 */
+  background-image: url(../img/mi-logo.png);
+  /* 设置标签a的背景颜色 */
+  background-color: #FF6700;
+  /* 设置图片居中 */
+  background-position: center;
+  /* 缓慢切换动画效果 */
+  transition: left 0.3s;
+}
+/* 设置头部logo中home-logo的样式 */
+.header .logo .home{
+  /* 设置home的背景图片 */
+  background-image: url(../img/mi-home.png);
+  /* 让home的背景图片向左移动55像素 */
+  left: -55px;
+}
+/* 设置鼠标移入时，mi图片向右移动到距离左边界55px处 */
+.header .logo:hover .mi{
+  left: 55px;
+}
+/* 设置鼠标移入时，home图片向右移动到距离左边界0px处 */
+.header .logo:hover .home{
+  left: 0px;
+}
+/* 设置头部中间的导航栏的格式 */
+.header .nav-wrapper{
+  /* 设置向左浮动 */
+  float: left;
+  /* 设置一个左外边距，使得中间的导航栏和左边的图片有一定的距离 */
+  margin-left: 7px;
+}
+.header-wrapper{
+  position: relative;
+}
+/* 设置ul的 格式 */
+.nav-wrapper .nav{
+  /* 设置整个ul的高度和宽度 */
+  height: 100px;
+  width: 792px;
+  /* 使文本垂直方向上居中 */
+  line-height: 100px;
+  /* 设置文本和nav-wrapper的左内边距，这里不能设置外边距，如果设置外边距的话就会导致整个nav-wrapper整体向右移动，会导致右边覆盖其他的布局 */
+  padding-left: 58px;
+}
+/* 设置ul中每一个li的格式 */
+.nav>li{
+  /* 让每一个li向左浮动，使其水平排列 */
+  float: left;
+}
+/* 设置超链接的样式 */
+.nav a{
+  /* 将行内元素转换为块元素，点击整个块元素都可以完成跳转 */
+  display: block;
+  /* 设置字体颜色 */
+  color: #333333;
+  /* 设置字体大小 */
+  font-size: 16px;
+  /* 设置字体的右外边距，使每个模块之间有一定的间距 */
+  margin-right: 20px;
+}
+.nav .all-goods{
+  visibility: hidden;
+}
+/* 设置当鼠标移入时的一个效果 */
+.nav a:hover{
+  /* 设置移入时字体颜色 */
+  color: #FF6700;
+}
+/* 设置当选中头部标题栏中间的选项时会出现隐藏的弹窗 */
+.nav .goods-info{
+  /* 开启定位 */
+  position: absolute;
+  /* 设置宽度与最邻近的开启定位的父元素宽度一致 */
+  width: 100%;
+  /* height: 228px; */
+  /* 以下两条代码是缓慢弹出弹窗的固定写法 */
+  height: 0;
+  overflow: hidden;
+  /* 设置与最相邻的开启定位元素的父元素的上边距离为100px，左边距离为0 */
+  top: 100px;
+  left: 0;
+  /* 设置缓慢弹出弹框效果 */
+  transition: height 0.3s;
+  background-color: #fff;
+  z-index: 9999;
+}
+/* 设置当鼠标移动到头部标题栏时，弹窗弹出 */
+.nav .show-goods:hover ~ .goods-info,
+.goods-info:hover {
+  height: 228px;
+  /* 设置弹出弹窗的上边框 */
+  border-top: 1px solid rgb(224, 224, 224);
+  /* 设置弹出边框的阴影效果 */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+/* 开启定位 */
+.all-goods-wrapper{
+  position: relative;
+}
+/* 设置左侧菜单的样式 */
+ .left-menu{
+   /* 开启定位 */
+  position: absolute;
+  /* 设置容器的宽度和高度 */
+  width: 234px;
+  height: 420px;
+  /* 设置容器向左偏移 */
+  left: -120px;
+  /* 因为是子元素,继承了父元素的line-height,这里重置一下line-height */
+  line-height: 1px;
+  /* 设置容器的背景颜色 */
+  background-color: rgba(0, 0, 0, 0.6);
+  /* 设置容器上下方向的内边距 */
+  padding: 20px 0px;
+  z-index: 999;
+
+}
+/* 设置图标字体的格式 */
+.left-menu i{
+  /* 使其向右浮动 */
+  float: right;
+  /* 设置垂直居中 */
+  line-height: 42px;
+}
+/* 设置左侧菜单的标签a中的文本样式 */
+.left-menu a{
+  /* 将标签a装换为块元素 */
+  display: block;
+  /* 设置标签a中文本的颜色 */
+  color: white;
+  /* 设置文字的字体大小 */
+  font-size: 14px;
+  /* 设置标签a的高度 */
+  height: 42px;
+  /* line-height和height设置一样,保证文本垂直居中 */
+  line-height: 42px;
+  /* 设置每一行的左右边距 */
+  padding: 0 30px;
+  /* 将右外边距设置为0,因为加了i标签,导致产生了20px的外边距 */
+  margin-right: 0px;
+}
+/* 设置鼠标移入时的样式 */
+.left-menu a:hover{
+/* 设置字体颜色 */
+  color: #fff;
+  /* 设置背景颜色 */
+  background-color: #FF6700;
+}
+
+/* 设置头部标题栏的搜索框的布局 */
+.search-wrapper{
+  /* 设置搜索框的高度和宽度 */
+  width: 294px;
+  height: 50px;
+  /* 整体向右浮动 */
+  float: right;
+  /* 设置上外边距为25px */
+  margin-top: 25px;
+}
+/* 设置搜索栏的输入框的布局 */
+.search-wrapper .search-inp{
+  /* 设置输入框向左浮动 */
+  float: left;
+  /* 设置输入框的宽度和高度 */
+  width: 242px;
+  height: 50px;
+  /* 设置输入框的高度和宽度为border-box的总和，默认情况下宽度和高度是content-box */
+  box-sizing: border-box;
+  /* 设置边框 */
+  border: 1px solid #E0E0E0;
+  /* 默认情况下，input输入框会存在一个outline外边框，必须要将其设置为none，这样当选中文本框时，边框的颜色才会改变 */
+  outline: none;
+
+}
+/* 设置搜索框的右边button的布局 */
+.search-wrapper .search-btn{
+/* 设置button向左浮动 */
+float: left;
+/* 设置button的高度和宽度 */
+width: 52px;
+height: 50px;
+/* 设置放大镜图标的大小 */
+font-size: 16px;
+/* 设置图标颜色 */
+color: #6A6161;
+ /* 设置button的高度和宽度为border-box的总和，默认情况下宽度和高度是content-box */
+box-sizing: border-box;
+/* 设置button的边框 */
+border: 1px solid #E0E0E0;
+/* 设置button的背景颜色 */
+background-color: #fff;
+/* 将左边框去掉，要不然输入框的右边框和button的左边框会同时现在在连接处，导致看上去连接处是两条边框 */
+border-left: none;
+/* 默认情况下，input输入框会存在一个outline外边框，必须要将其设置为none，这样当选中文本框时，外围线框才不会出现 */
+outline: none;
+}
+/* 设置当选中了输入框后，边框的颜色发生变化 */
+.search-wrapper .search-inp:focus,
+.search-wrapper .search-inp:focus + .search-btn{
+  border-color:  #FF6700;
+}
+/* 设置当鼠标移入到button时,背景颜色和图标颜色发生变化 */
+.search-wrapper .search-btn:hover{
+  background-color: #FF6700;
+  color: #fff;
+  /* 将边框去除 */
+  border: none;
+}
+/* 设置banner容器的高度 */
+.banner{
+  height: 460px;
+  /* li开启定位，为离他最近的包含块开启定位 */
+  position: relative;
+}
+/* 设置盛放图片的每一个li开启定位，让5张图片叠放在一起 */
+.banner .img-list li{
+  position: absolute;
+}
+/* 设置banner中图片的格式 */
+.banner img{
+  /* 设置宽度充满理他最近的开启定位的包含块 */
+  width: 100%;
+  vertical-align: top;
+}
+/* 设置盛放五个小圆点的容器 */
+.banner .pointer{
+  position: absolute;
+  /* 开启定位，设置距离 */
+  bottom: 22px;
+  right: 35px;
+}
+/* 设置容器中每一个小圆点的布局，也就是每一个标签a的布局 */
+.banner  .pointer a{
+  /* 将其转换为块元素，设置宽高 */
+  display: block;
+  width: 6px;
+  height: 6px;
+  /* 设置成小圆点 */
+  border-radius: 50%;
+  /* 设置小圆点的边界 */
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  /* 默认小圆点垂直排列，设置浮动使其水平排列 */
+  float: left;
+  /* 设置背景颜色 */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 设置每一个之间的间距 */
+  margin-left: 6px;
+}
+/* 设置鼠标移入时的布局 */
+.pointer a:hover,
+.pointer a.active{
+  border-color: rgba(0, 0, 0, 0.4) ;
+  background-color:rgba(255, 255, 255, 0.4);
+}
+/* 设置左右两个箭头的布局 */
+.pre-next a{
+  /* 因为开启了定位，所以标签a可以设置宽高了 */
+  width: 41px;
+  height: 69px;
+  position: absolute;
+  /* 设置背景图片，这里采用雪碧图的方式进行切换，当然也可以使用图标字体 */
+  background-image: url(../img/icon-slides.png);
+  /* 以下三行代码是为了让箭头在垂直方向上居中显示 */
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+/* 设置左边的箭头 */
+.pre-next .pre{
+left: 234px;
+background-position: -83px;
+}
+/* 设置右边的箭头 */
+.pre-next .next{
+  right: 0px;
+  background-position: -125px;
+}
+/* 设置当鼠标移入时的布局 */
+.pre-next .pre:hover{
+  background-position: 0px;
+}
+/* 设置当鼠标移入时的布局 */
+.pre-next .next:hover{
+  background-position: -42px;
+}
+/* 设置固定条的样式 */
+.back-top{
+  /* 设置固定条的高度和宽度 */
+  width: 26px;
+  height: 206px;
+  /* 设置固定台条的背景颜色 */
+  background-color: #bbffaa;
+  /* 给固定条开启固定定位 */
+  position: fixed;
+  /* 设置固定条距离下边50px */
+  bottom: 50px;
+  /* 设置距离右边在视口的50%的位置 */
+  right: 50%;
+  /* 设置做外边距 */
+  margin-right: -639px;
+}
+/* 设置整个下部容器的样式 */
+.ad{
+  /* 设置下部整个容器的高度 */
+  height: 170px;
+  /* 整个容器具体上边有14px的外边距 */
+  margin-top: 14px;
+}
+/* 设置浮动效果 */
+.shortcut,
+.imgs,
+.ad li{
+  float: left;
+}
+/* 设置左边块的样式 */
+.shortcut{
+  /* 设置左边整体块的高度和宽度 */
+  width: 228px;
+  height: 168px;
+  /* 设置左边块距离右边的外边距 */
+  margin-right: 14px;
+  /* 设置左边块的背景颜色 */
+  background-color: #5f5750;
+  /* 设置左边块中内容距离边界的距离 */
+  padding-top: 2px;
+  padding-left: 6px;
+}
+/* 设置左边块中标签a的样式 */
+.shortcut a{
+  /* 将a设置为块元素，让整个都可以点击 */
+  display: block;
+  /* 设置每一个块元素的高度和宽度 */
+  width: 76px;
+  height: 84px;
+  /* 设置标签a的字体颜色 */
+  color: #cfccca;
+  /* 让标签a中的内容整体垂直和水平居中 */
+  text-align: center;
+  /* 设置标签a中字体大小 */
+  font-size: 12px;
+}
+/* 设置左边块中图标字体的样式 */
+.shortcut i{
+  /* 因为图标字体独占一行，所以将其设置为块元素 */
+  display: block;
+  /* 设置图标字体的大小 */
+  font-size: 20px;
+  /* 设置图标字体距离每一个标签a的上边界的距离 */
+  padding-top: 20px;
+  /* 设置图标字体的下内边距的距离 */
+  padding-bottom: 6px;
+}
+/* 设置当鼠标移入标签a时的样式 */
+.shortcut a:hover{
+  color: white;
+}
+.shortcut li{
+  position: relative;
+}
+/* 设置每一个li上边的横线 */
+.shortcut li::before{
+  content: '';
+  /* 涉及到定位，开启定位 */
+  position: absolute;
+  /* 设置横线 */
+  width: 64px;
+  height: 1px;
+  /* 设置横线的颜色，这里要设置background-color，不要设置color，color只管字体 */
+  background-color: #665e57;
+  /* 设置水平方向居中 */
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+/* 设置左边竖线的样式 */
+.shortcut li::after{
+  content: '';
+  /* 涉及到定位，开启定位 */
+  position: absolute;
+  /* 设置竖线 */
+  width: 1px;
+  height: 70px;
+  /* 设置竖线颜色 */
+  background-color: #665e57;
+  /* 设置竖线垂直居中 */
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: 0;
+}
+/* 设置右边块每一个li的样式 */
+.imgs li{
+  width: 316px;
+  height: 170px;
+  /* 每一个li都有右外边距 */
+  margin-right: 15px;
+}
+/* 为最后一个li去除右外边距 */
+.imgs li:last-child{
+  margin: 0px;
+}
+/* 设置li中图片的样式 */
+.imgs img{
+  /* 设置宽度与li保持一致，充满父元素li */
+  width: 100%;
+  /* 设置图片顶部对齐，默认是基线对齐 */
+  vertical-align: top;
+}
